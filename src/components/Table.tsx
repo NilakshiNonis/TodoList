@@ -1,4 +1,5 @@
 import React from "react";
+import Checkbox from "./Checkbox";
 
 interface Itable {
   id: number;
@@ -12,10 +13,6 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ items, onCheckBoxChange }) => {
-  const handleCheckboxChange =
-    (id: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      onCheckBoxChange(id, event.target.checked);
-    };
   return (
     <div>
       <table style={{ border: "2px solid black", width: "50%" }}>
@@ -46,10 +43,10 @@ const Table: React.FC<TableProps> = ({ items, onCheckBoxChange }) => {
                   padding: "8px",
                 }}
               >
-                <input
-                  type="checkbox"
-                  checked={item.isChecked}
-                  onChange={handleCheckboxChange(item.id)}
+                <Checkbox
+                  id={item.id}
+                  isChecked={item.isChecked}
+                  onCheckBoxChange={onCheckBoxChange}
                 />
               </td>
             </tr>
