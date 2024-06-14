@@ -28,9 +28,10 @@ const App: React.FC = () => {
         const mappedData = data.map((todo) => ({
           id: todo.id,
           title: todo.title,
+          isChecked:todo.completed
         }));
 
-        setItems(mappedData.slice(0, 100));
+        setItems(mappedData.slice(0, 50));
       } catch (error) {
         setError(error as Error);
       } finally {
