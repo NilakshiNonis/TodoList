@@ -16,7 +16,7 @@ interface TableProps {
 const Table: React.FC<TableProps> = ({ items, onCheckBoxChange, loading }) => {
   return (
     <div>
-      <table style={{ border: "2px solid black", width: "50%", tableLayout:"fixed"}}>
+      <table style={{ borderCollapse: "collapse", width: "50%" }}>
         <thead>
           <tr>
             <th style={{ border: "1px solid black", padding: "8px", width:"70%" }}>Items</th>
