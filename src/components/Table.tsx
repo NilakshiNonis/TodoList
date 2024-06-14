@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Checkbox from "./Checkbox";
 
 interface Itable {
@@ -10,20 +10,29 @@ interface Itable {
 interface TableProps {
   items: Itable[];
   onCheckBoxChange: (id: number, isChecked: boolean) => void;
+  loading?: boolean;
 }
 
-const Table: React.FC<TableProps> = ({ items, onCheckBoxChange }) => {
+const Table: React.FC<TableProps> = ({ items, onCheckBoxChange, loading }) => {
   return (
     <div>
       <table style={{ border: "2px solid black", width: "50%" }}>
         <thead>
-          <tr>
+          <tr style={{width:"75%"}}>
             <th style={{ border: "1px solid black", padding: "8px" }}>Items</th>
             <th style={{ border: "1px solid black", padding: "8px" }}>
               Status
             </th>
           </tr>
         </thead>
+        
+        {loading ? (
+        <tr>
+        <td colSpan={2} style={{ textAlign: "center", padding: "8px" }}>
+          Loading...
+        </td>
+      </tr>
+      ) : (
         <tbody>
           {items.map((item) => (
             <tr key={item.id}>
@@ -52,6 +61,7 @@ const Table: React.FC<TableProps> = ({ items, onCheckBoxChange }) => {
             </tr>
           ))}
         </tbody>
+            )}
       </table>
     </div>
   );

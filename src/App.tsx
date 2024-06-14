@@ -30,7 +30,7 @@ const App: React.FC = () => {
           title: todo.title,
         }));
 
-        setItems(mappedData.slice(0, 10));
+        setItems(mappedData.slice(0, 100));
       } catch (error) {
         setError(error as Error);
       } finally {
@@ -41,7 +41,6 @@ const App: React.FC = () => {
     fetchData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
 
   if (error) return <div>Error: {error}</div>;
 
@@ -56,7 +55,7 @@ const App: React.FC = () => {
   return (
     <div>
       <h1>Todo List</h1>
-      <Table items={items} onCheckBoxChange={handleCheckboxChange} />
+      <Table items={items} onCheckBoxChange={handleCheckboxChange} loading={loading}/>
       <h3 style={{ border: "1px solid black", width: "20%", padding: "2px" }}>
         Completed Items count: {completedItems}
       </h3>
