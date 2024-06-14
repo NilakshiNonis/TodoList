@@ -16,10 +16,10 @@ interface TableProps {
 const Table: React.FC<TableProps> = ({ items, onCheckBoxChange, loading }) => {
   return (
     <div>
-      <table style={{ border: "2px solid black", width: "50%" }}>
+      <table style={{ border: "2px solid black", width: "50%", tableLayout:"fixed"}}>
         <thead>
-          <tr style={{width:"75%"}}>
-            <th style={{ border: "1px solid black", padding: "8px" }}>Items</th>
+          <tr>
+            <th style={{ border: "1px solid black", padding: "8px", width:"70%" }}>Items</th>
             <th style={{ border: "1px solid black", padding: "8px" }}>
               Status
             </th>
@@ -32,7 +32,13 @@ const Table: React.FC<TableProps> = ({ items, onCheckBoxChange, loading }) => {
           Loading...
         </td>
       </tr>
-      ) : (
+      ) : items.length === 0 ? (
+        <tr>
+        <td colSpan={2} style={{ textAlign: "center", padding: "8px" }}>
+         No items to display
+        </td>
+      </tr>
+      ):  (
         <tbody>
           {items.map((item) => (
             <tr key={item.id}>
